@@ -79,6 +79,12 @@ Ref. https://docs.docker.com/engine/install/ubuntu/
 
 ## Installing kubeadm
 
+```
+sudo swapoff -a
+
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+
 Update the apt package index and install packages needed to use the Kubernetes apt repository:
 
 ```

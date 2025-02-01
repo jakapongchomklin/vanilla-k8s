@@ -47,13 +47,6 @@ Install the containerd packages
 ```
 sudo apt-get install containerd.io
 ```
-
-Verify that the installation is successful by running the hello-world image:
-
-```
-sudo docker run hello-world
-```
-
 containerd uses a configuration file located in /etc/containerd/config.toml for specifying daemon level options.
 
 The default configuration can be generated via

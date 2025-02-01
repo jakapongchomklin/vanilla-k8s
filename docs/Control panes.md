@@ -71,7 +71,9 @@ Overriding the sandbox (pause) image
   sandbox_image = "registry.k8s.io/pause:3.10"
 ```
 
+```
 sudo systemctl restart containerd
+```
 
 Ref. https://docs.docker.com/engine/install/ubuntu/
 

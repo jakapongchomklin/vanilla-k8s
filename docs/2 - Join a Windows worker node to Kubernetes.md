@@ -44,7 +44,7 @@ mkdir 'C:\Program Files\containerd\cni\bin'
 scp jakapong@172.23.163.83:/home/jakapong/.kube/config c:\k
 ```
 
-![alt text](image-10.png)
+![alt text](image-11.png)
 
 ```
 Invoke-WebRequest https://github.com/projectcalico/calico/releases/download/v3.29.1/install-calico-windows.ps1 -OutFile c:\install-calico-windows.ps1

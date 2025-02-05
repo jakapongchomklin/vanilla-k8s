@@ -117,7 +117,7 @@ On the worker node, run
 kubeadm join — token <token> <control-plane-host>:<control-plane-port> — discovery-token-ca-cert-hash sha256:<hash>
 ```
 
-![alt text](image-13.png)
+![alt text](image-15.png)
 
 On control plane node
 
@@ -176,8 +176,12 @@ spec:
 
 ```
 kubectl apply -f win-webserver.yaml
-kubectl get pods -o wide -w
+kubectl get pods -o wide
 ```
+
+![alt text](image-16.png)
+
+![alt text](image-17.png)
 
 
 

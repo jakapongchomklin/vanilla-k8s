@@ -1,12 +1,22 @@
 # 2 - Join a Windows worker node to Kubernetes
 
-## 1. Prepare the Windows node
+## 1. Preparation
+
+On the control plane node, run
+
+```
+./calicoctl ipam configure --strictaffinity=true --allow-version-mismatch
+```
+
+On your laptop
 
 ```
 Set-VMProcessor -VMName w25f -ExposeVirtualizationExtensions $true
 ```
 
-Start the node
+Turn on the Windows VM
+
+On Widows VM
 
 ```
 Install-WindowsFeature -Name containers
@@ -22,12 +32,6 @@ curl.exe -LO https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools
 ```
 
 ## 3. Install Calico
-
-On the control plane node, run
-
-```
-./calicoctl ipam configure --strictaffinity=true --allow-version-mismatch
-```
 
 On Windows node
 

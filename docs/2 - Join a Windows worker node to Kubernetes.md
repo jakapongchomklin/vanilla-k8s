@@ -41,7 +41,7 @@ mkdir 'C:\Program Files\containerd\cni\bin'
 ```
 
 ```
-scb jakapong@172.23.163.83:/home/jakapong/.kube/config c:\k
+scp jakapong@172.23.163.83:/home/jakapong/.kube/config c:\k
 ```
 
 ![alt text](image-10.png)

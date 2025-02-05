@@ -11,7 +11,7 @@ On the control plane node, run
 On your laptop
 
 ```
-Set-VMProcessor -VMName w25f -ExposeVirtualizationExtensions $true
+Set-VMProcessor -VMName w19a -ExposeVirtualizationExtensions $true
 ```
 
 Turn on the Windows VM
@@ -117,11 +117,11 @@ On the worker node, run
 kubeadm join — token <token> <control-plane-host>:<control-plane-port> — discovery-token-ca-cert-hash sha256:<hash>
 ```
 
-![alt text](image-15.png)
+![alt text](image-20.png)
 
 On control plane node
 
-![alt text](image-14.png)
+![alt text](image-19.png)
 
 ## 6. Test
 
@@ -165,7 +165,7 @@ spec:
     spec:
      containers:
       - name: windowswebserver
-        image: mcr.microsoft.com/windows/servercore:ltsc2022
+        image: mcr.microsoft.com/windows/servercore:ltsc2019
         command:
         - powershell.exe
         - -command
@@ -179,9 +179,23 @@ kubectl apply -f win-webserver.yaml
 kubectl get pods -o wide
 ```
 
-![alt text](image-16.png)
+![alt text](image-21.png)
 
-![alt text](image-18.png)
+```
+kubectl describe pod win-webserver-7cb7f6ffb6-ll874
+```
+
+![alt text](image-22.png)
+
+![alt text](image-25.png)
+
+![alt text](image-24.png)
+
+![alt text](image-23.png)
+
+![alt text](image-26.png)
+
+![alt text](image-27.png)
 
 ...
 

@@ -1,4 +1,4 @@
-# Kubernetes + containerd + Calico on Ubuntu
+# Create a Kubernetes cluster on Ubuntu with containerd and Calico
 
 ## 1. Create the cluster
 
@@ -77,7 +77,7 @@ kubectl get nodes
 
 Ref. https://docs.tigera.io/calico/latest/operations/calicoctl/install
 
-## 2. Join an Ubunto worker node
+## 2. Join an Ubuntu worker node
 
 ```
 # Prerequisites
@@ -127,7 +127,7 @@ sudo systemctl enable kubelet
 On the control plane node, run.
 
 ```
-kubeadm token create — print-join-command
+kubeadm token create --print-join-command
 ```
 
 ![alt text](image-7.png)

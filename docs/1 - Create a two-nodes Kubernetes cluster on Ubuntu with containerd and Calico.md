@@ -73,7 +73,7 @@ chmod +x ./calicoctl
 kubectl get nodes
 ```
 
-![alt text](image-8.png)
+![alt text](../assets/250205/image-8.png)
 
 Ref. https://docs.tigera.io/calico/latest/operations/calicoctl/install
 
@@ -130,7 +130,7 @@ On the control plane node, run.
 kubeadm token create --print-join-command
 ```
 
-![alt text](image-7.png)
+![alt text](../assets/250205/image-7.png)
 
 On the worker node, run
 
@@ -138,7 +138,7 @@ On the worker node, run
 kubeadm join — token <token> <control-plane-host>:<control-plane-port> — discovery-token-ca-cert-hash sha256:<hash>
 ```
 
-![alt text](image-6.png)
+![alt text](../assets/250205/image-6.png)
 
 On the control plane node, run
 
@@ -146,7 +146,7 @@ On the control plane node, run
 kubectl get nodes
 ```
 
-![alt text](image-5.png)
+![alt text](../assets/250205/image-5.png)
 
 ## 3. Test
 
@@ -159,7 +159,7 @@ kubectl get pods -o wide
 kubectl get svc nginx
 ```
 
-![alt text](image-4.png)
+![alt text](../assets/250205/image-4.png)
 
 Test access.
 
@@ -167,6 +167,6 @@ Test access.
 curl http://<Worker_Node_IP>:<NodePort>
 ```
 
-![alt text](image-2.png)
+![alt text](../assets/250205/image-2.png)
 
-![alt text](image-3.png)
+![alt text](../assets/250205/image-3.png)

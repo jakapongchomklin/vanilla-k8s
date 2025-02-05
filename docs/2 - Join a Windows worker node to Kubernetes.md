@@ -76,7 +76,7 @@ mkdir 'C:\Program Files\containerd\cni\bin'
 scp jakapong@172.23.163.83:/home/jakapong/.kube/config c:\k
 ```
 
-![alt text](image-11.png)
+![alt text](../assets/250205/image-11.png)
 
 ```
 Invoke-WebRequest https://github.com/projectcalico/calico/releases/download/v3.29.1/install-calico-windows.ps1 -OutFile c:\install-calico-windows.ps1
@@ -109,7 +109,7 @@ On the control plane node, run.
 kubeadm token create --print-join-command
 ```
 
-![alt text](image-12.png)
+![alt text](../assets/250205/image-12.png)
 
 On the worker node, run
 
@@ -117,11 +117,11 @@ On the worker node, run
 kubeadm join — token <token> <control-plane-host>:<control-plane-port> — discovery-token-ca-cert-hash sha256:<hash>
 ```
 
-![alt text](image-20.png)
+![alt text](../assets/250205/image-20.png)
 
 On control plane node
 
-![alt text](image-19.png)
+![alt text](../assets/250205/image-19.png)
 
 ## 6. Test
 
@@ -179,23 +179,23 @@ kubectl apply -f win-webserver.yaml
 kubectl get pods -o wide
 ```
 
-![alt text](image-21.png)
+![alt text](../assets/250205/image-21.png)
 
 ```
 kubectl describe pod win-webserver-7cb7f6ffb6-ll874
 ```
 
-![alt text](image-22.png)
+![alt text](../assets/250205/image-22.png)
 
-![alt text](image-25.png)
+![alt text](../assets/250205/image-25.png)
 
-![alt text](image-24.png)
+![alt text](../assets/250205/image-24.png)
 
-![alt text](image-23.png)
+![alt text](../assets/250205/image-23.png)
 
-![alt text](image-26.png)
+![alt text](../assets/250205/image-26.png)
 
-![alt text](image-27.png)
+![alt text](../assets/250205/image-27.png)
 
 ...
 

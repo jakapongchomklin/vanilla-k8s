@@ -16,7 +16,12 @@ Set-VMProcessor -VMName w25f -ExposeVirtualizationExtensions $true
 
 Turn on the Windows VM
 
-On Widows VM
+On Windows VM
+
+- Change time zone to be same as the control plane node.
+- Turn of Windows firewall
+
+Run
 
 ```
 Install-WindowsFeature -Name containers
@@ -87,10 +92,101 @@ Get-Service -Name CalicoFelix
 ```
 C:\CalicoWindows\kubernetes\install-kube-services.ps1
 
+Start-Service -Name kubelet
+Start-Service -Name kube-proxy
+
+Stop-Service -Name kubelet
+
 Get-Service -Name kubelet
 Get-Service -Name kube-proxy
 ```
 
-## 5. Join a Windows worker not
+## 5. Join a Windows worker node
+
+On the control plane node, run.
+
+```
+kubeadm token create --print-join-command
+```
+
+![alt text](image-12.png)
+
+On the worker node, run
+
+```
+kubeadm join — token <token> <control-plane-host>:<control-plane-port> — discovery-token-ca-cert-hash sha256:<hash>
+```
+
+![alt text](image-13.png)
+
+On control plane node
+
+![alt text](image-14.png)
+
+## 6. Test
+
+Ref. https://kubernetes.io/docs/concepts/windows/user-guide/
+
+win-webserver.yaml
+
+```
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: win-webserver
+  labels:
+    app: win-webserver
+spec:
+  ports:
+    # the port that this service should serve on
+    - port: 80
+      targetPort: 80
+  selector:
+    app: win-webserver
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: win-webserver
+  name: win-webserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: win-webserver
+  template:
+    metadata:
+      labels:
+        app: win-webserver
+      name: win-webserver
+    spec:
+     containers:
+      - name: windowswebserver
+        image: mcr.microsoft.com/windows/servercore:ltsc2022
+        command:
+        - powershell.exe
+        - -command
+        - "<#code used from https://gist.github.com/19WAS85/5424431#> ; $$listener = New-Object System.Net.HttpListener ; $$listener.Prefixes.Add('http://*:80/') ; $$listener.Start() ; $$callerCounts = @{} ; Write-Host('Listening at http://*:80/') ; while ($$listener.IsListening) { ;$$context = $$listener.GetContext() ;$$requestUrl = $$context.Request.Url ;$$clientIP = $$context.Request.RemoteEndPoint.Address ;$$response = $$context.Response ;Write-Host '' ;Write-Host('> {0}' -f $$requestUrl) ;  ;$$count = 1 ;$$k=$$callerCounts.Get_Item($$clientIP) ;if ($$k -ne $$null) { $$count += $$k } ;$$callerCounts.Set_Item($$clientIP, $$count) ;$$ip=(Get-NetAdapter | Get-NetIpAddress); $$header='<html><body><H1>Windows Container Web Server</H1>' ;$$callerCountsString='' ;$$callerCounts.Keys | % { $$callerCountsString+='<p>IP {0} callerCount {1} ' -f $$ip[1].IPAddress,$$callerCounts.Item($$_) } ;$$footer='</body></html>' ;$$content='{0}{1}{2}' -f $$header,$$callerCountsString,$$footer ;Write-Output $$content ;$$buffer = [System.Text.Encoding]::UTF8.GetBytes($$content) ;$$response.ContentLength64 = $$buffer.Length ;$$response.OutputStream.Write($$buffer, 0, $$buffer.Length) ;$$response.Close() ;$$responseStatus = $$response.StatusCode ;Write-Host('< {0}' -f $$responseStatus)  } ; "
+     nodeSelector:
+      kubernetes.io/os: windows
+```
+
+```
+kubectl apply -f win-webserver.yaml
+kubectl get pods -o wide -w
+```
+
+
+
+
+
+
+
+
+
+
 
 

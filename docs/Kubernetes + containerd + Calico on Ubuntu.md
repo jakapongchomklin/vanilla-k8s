@@ -62,18 +62,18 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/ca
 
 kubectl apply -f calico.yaml
 
+# Install calicoctl
+
+curl -L https://github.com/projectcalico/calico/releases/download/v3.29.1/calicoctl-linux-amd64 -o calicoctl
+
+chmod +x ./calicoctl
+
+# List nodes
+
 kubectl get nodes
 ```
 
 ![alt text](image-8.png)
-
-Install calicoctl
-
-```
-curl -L https://github.com/projectcalico/calico/releases/download/v3.29.1/calicoctl-linux-amd64 -o calicoctl
-
-chmod +x ./calicoctl
-```
 
 Ref. https://docs.tigera.io/calico/latest/operations/calicoctl/install
 

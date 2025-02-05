@@ -1,4 +1,4 @@
-# Create a Kubernetes cluster on Ubuntu with containerd and Calico
+# 1 - Create a two-nodes Kubernetes cluster on Ubuntu with containerd and Calico
 
 ## 1. Create the cluster
 

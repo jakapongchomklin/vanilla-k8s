@@ -28,7 +28,7 @@ Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
 ```
 curl.exe -LO https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/Install-Containerd.ps1
 
-.\Install-Containerd.ps1 -ContainerDVersion 1.32.1
+.\Install-Containerd.ps1 -ContainerDVersion 1.7.22
 ```
 
 ## 3. Install Calico
